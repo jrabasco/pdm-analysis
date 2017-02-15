@@ -24,10 +24,10 @@ for stat in stats:
 
 	stat_by_user[user_id]["tl"]["a"] += stat["questionsByType"]["timeline"]["amount"]
 	stat_by_user[user_id]["tl"]["c"] += stat["questionsByType"]["timeline"]["correct"]
-    
+
 	stat_by_user[user_id]["geo"]["a"] += stat["questionsByType"]["geolocation"]["amount"]
 	stat_by_user[user_id]["geo"]["c"] += stat["questionsByType"]["geolocation"]["correct"]
-    
+
 	stat_by_user[user_id]["ord"]["a"] += stat["questionsByType"]["order"]["amount"]
 	stat_by_user[user_id]["ord"]["c"] += stat["questionsByType"]["order"]["correct"]
 
@@ -49,8 +49,8 @@ geo_correct = np.mean(res_geo)
 geo_std = np.std(res_geo)
 
 N = 4
-corrects = (ord_correct, tl_correct, mc_correct, geo_correct)
-corrects_std = (ord_std, tl_std, mc_std, geo_std)
+corrects = (mc_correct, tl_correct, ord_correct, geo_correct)
+corrects_std = (mc_std, tl_std, ord_std, geo_std)
 
 ind = np.arange(N)  # the x locations for the groups
 width = 0.35       # the width of the bars
@@ -65,10 +65,10 @@ print(corrects)
 
 # add some text for labels, title and axes ticks
 ax.set_title('Percentages Correctly Answered')
-ax.set_xticklabels(('Order', 'Timeline', 'Multiple Choice', 'Geolocation'))
+ax.set_xticklabels(('Multiple Choice', 'Timeline', 'Order', 'Geolocation'))
 ax.set_xticks(ind)
+ax.set_ylim(0, 100)
 
-ax.legend((rects1[0], rects2[0]), ('%correct', '%correct at random'), loc='upper left')
 ax.set_xlabel('Question Type')
 ax.set_ylabel('Percentage Correct')
 

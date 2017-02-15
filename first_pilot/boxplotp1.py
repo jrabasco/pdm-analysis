@@ -24,10 +24,10 @@ for stat in stats:
 
 	stat_by_user[user_id]["tl"]["a"] += stat["questionsByType"]["timeline"]["amount"]
 	stat_by_user[user_id]["tl"]["c"] += stat["questionsByType"]["timeline"]["correct"]
-    
+
 	stat_by_user[user_id]["geo"]["a"] += stat["questionsByType"]["geolocation"]["amount"]
 	stat_by_user[user_id]["geo"]["c"] += stat["questionsByType"]["geolocation"]["correct"]
-    
+
 	stat_by_user[user_id]["ord"]["a"] += stat["questionsByType"]["order"]["amount"]
 	stat_by_user[user_id]["ord"]["c"] += stat["questionsByType"]["order"]["correct"]
 
@@ -36,7 +36,7 @@ res_tl = [(stat_by_user[user_id]["tl"]["c"]/stat_by_user[user_id]["tl"]["a"]) * 
 res_geo = [(stat_by_user[user_id]["geo"]["c"]/stat_by_user[user_id]["geo"]["a"]) * 100 for user_id in stat_by_user if stat_by_user[user_id]["geo"]["a"] > 0]
 res_ord = [(stat_by_user[user_id]["ord"]["c"]/stat_by_user[user_id]["ord"]["a"]) * 100 for user_id in stat_by_user if stat_by_user[user_id]["ord"]["a"] > 0]
 
-data = [res_ord, res_tl, res_mc, res_geo]
+data = [res_mc, res_tl, res_ord, res_geo]
 
 fig, ax1 = plt.subplots(figsize=(10, 6))
 fig.canvas.set_window_title('A Boxplot Example')
@@ -63,7 +63,7 @@ ax1.set_xlim(0.5, 4 + 0.5)
 top = 102
 bottom = -2
 ax1.set_ylim(bottom, top)
-xtickNames = plt.setp(ax1, xticklabels=['Order', 'Timeline', 'Multiple Choice', 'Geolocation'])
+xtickNames = plt.setp(ax1, xticklabels=['Multiple Choice', 'Timeline', 'Order', 'Geolocation'])
 plt.setp(xtickNames, fontsize=8)
 
 pos = np.arange(4) + 1

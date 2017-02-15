@@ -45,7 +45,7 @@ def choices_id(choices):
 
 def analyse_question(question):
 	global counts
-	
+
 	if question["type"] == "ORDPostReactionsNumber":
 		identifier = subject_id(question["subject"])
 	else:
@@ -61,12 +61,12 @@ def analyse_board(board):
 
 		if tile["question2"]["kind"] == "Order":
 			analyse_question(tile["question2"])
-			
+
 		if tile["question3"]["kind"] == "Order":
 			analyse_question(tile["question3"])
 
 start = datetime(2017, 1, 18, 0, 0, 0)
-user_games = games_col.find({"creationTime" : {"$gte": start}})
+user_games = games_col.find({})
 for game in user_games:
 	if game['player1'] != "NNquJdDH2Hg2Nnhwp":
 		analyse_board(game['player1Board'])
